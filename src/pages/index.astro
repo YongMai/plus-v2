@@ -18,19 +18,27 @@ import 'highlight.js/styles/atom-one-dark.css'
 
 <script>
 async function checkCurrentAuth() {
-  const password = localStorage.getItem('pass')
+  const urlParams = new URLSearchParams(window.location.search);
+  const param1 = urlParams.get('param1') ?? '';
+const param2 = urlParams.get('param2') ?? '';
+const signature = urlParams.get('signature') ?? '';
+  const password = localStorage.getItem('pass');
+
+  //const password = passwordFromParam || passwordFromLocalStorage;
   const response = await fetch('/api/auth', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      pass: password,
+      param1: param1,
+      param2:param2,
+      signature:signature, 
     }),
-  })
-  const responseJson = await response.json()
-  if (responseJson.code !== 0)
-    window.location.href = '/password'
+  });
+
+  const responseJson = await response.json();
+  if (responseJson.code !== 0) window.location.href = 'https://yongmai.xyz/myvip';
 }
 checkCurrentAuth()
 </script>
