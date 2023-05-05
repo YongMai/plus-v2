@@ -32,12 +32,12 @@ export const post: APIRoute = async (context) => {
 
 
   if (isValidSignature) {
-    // Check if param2 is within the 24-hour range
+    // Check if param2 is within the 10-hour range
     const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
     const param2Time = parseInt(param2);
 
-    if (currentTime >= param2Time && currentTime <= param2Time + 86400) {
-      // Param2 is within the 24-hour range
+    if (currentTime >= param2Time && currentTime <= param2Time + 36000) {
+      // Param2 is within the 10-hour range
       return new Response(
         JSON.stringify({
           code: 0,
