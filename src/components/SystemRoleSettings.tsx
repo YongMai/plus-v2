@@ -22,7 +22,7 @@ export default (props: Props) => {
   }
   createEffect(() => {
     if (props.systemRoleEditing() && !props.currentSystemRoleSettings()) {
-      systemInputRef.value = '你是 ChatGPT，一个由 OpenAI 训练的大型语言模型。请仔细遵循用户的指示回答。';
+      systemInputRef.value = '你是 ChatGPT，一个由 OpenAI 训练的大型语言模型。请仔细遵循用户的指示，一步步思考并回答。';
       props.setCurrentSystemRoleSettings(systemInputRef.value)
     }
   });
