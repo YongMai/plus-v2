@@ -26,7 +26,7 @@ export default (props: Props) => {
           <div>
             <div class="fi gap-1 op-50 dark:op-60">
               <Show when={props.canEdit()} fallback={<IconEnv />}>
-                <span onClick={() => props.setCurrentSystemRoleSettings('你是 ChatGPT，一个由 OpenAI 训练的大型语言模型。请仔细遵循用户的指示回答。')} class="sys-edit-btn p-1 rd-50%" > <IconX /> </span>
+                <span onClick={() => props.setCurrentSystemRoleSettings('')} class="sys-edit-btn p-1 rd-50%" > <IconX /> </span>
               </Show>
               <span>System Role: </span>
             </div>
