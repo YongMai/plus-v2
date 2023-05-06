@@ -1,4 +1,4 @@
-import { Show } from 'solid-js'
+import { createEffect, Show } from 'solid-js'
 import IconEnv from './icons/Env'
 import IconX from './icons/X'
 import type { Accessor, Setter } from 'solid-js'
@@ -14,11 +14,18 @@ interface Props {
 export default (props: Props) => {
   let systemInputRef: HTMLTextAreaElement
 
+  
+
   const handleButtonClick = () => {
     props.setCurrentSystemRoleSettings(systemInputRef.value)
     props.setSystemRoleEditing(false)
   }
-
+  createEffect(() => {
+    if (props.systemRoleEditing() && !props.currentSystemRoleSettings()) {
+      systemInputRef.value = '你是 ChatGPT，一个由 OpenAI 训练的大型语言模型。请仔细遵循用户的指示回答。';
+      props.setCurrentSystemRoleSettings(systemInputRef.value)
+    }
+  });
   return (
     <div class="my-4">
       <Show when={!props.systemRoleEditing()}>
@@ -48,7 +55,7 @@ export default (props: Props) => {
             <IconEnv />
             <span>System Role:</span>
           </div>
-          <p class="my-2 leading-normal text-sm op-50 dark:op-60">Gently instruct the assistant and set the behavior of the assistant.</p>
+          <p class="my-2 leading-normal text-sm op-50 dark:op-60">定义系统角色来更好的设定它的回复.</p>
           <div>
             <textarea
               ref={systemInputRef!}
@@ -57,7 +64,6 @@ export default (props: Props) => {
               autofocus
               rows="3"
               gen-textarea
-              defaultValue="你是 ChatGPT，一个由 OpenAI 训练的大型语言模型。请仔细遵循用户的指示回答。"
             />
           </div>
           <button onClick={handleButtonClick} gen-slate-btn>
