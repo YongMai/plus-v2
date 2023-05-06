@@ -57,6 +57,7 @@ export default (props: Props) => {
               autofocus
               rows="3"
               gen-textarea
+              defaultValue="你是 ChatGPT，一个由 OpenAI 训练的大型语言模型。请仔细遵循用户的指示回答。"
             />
           </div>
           <button onClick={handleButtonClick} gen-slate-btn>
