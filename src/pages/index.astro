@@ -40,5 +40,10 @@ const signature = urlParams.get('signature') ?? '';
   const responseJson = await response.json();
   if (responseJson.code !== 0) window.location.href = 'https://yongmai.xyz/myvip';
 }
+function refreshPage() {
+  window.location.reload();
+}
 checkCurrentAuth()
+// Refresh the page every 12 hours
+setTimeout(refreshPage, 43200000);
 </script>
