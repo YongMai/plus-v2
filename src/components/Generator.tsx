@@ -91,8 +91,8 @@ export default () => {
       requestMessageList = requestMessageList.filter((item) => {
         return !item.content.includes('⚠️')
       })
-      if (requestMessageList.length > 12) {
-        requestMessageList = [...requestMessageList.slice(0, 3), ...requestMessageList.slice(-9)];
+      if (requestMessageList.length > 20) {
+        requestMessageList = [...requestMessageList.slice(0, 3), ...requestMessageList.slice(-17)];
       }
       if (currentSystemRoleSettings()) {
         requestMessageList.unshift({
